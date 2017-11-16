@@ -1,37 +1,64 @@
 <html>
-    <head>
-        <script src="vue.js"></script>
-    </head>
 
-    <div id="app-8">
-        <ol>
-            <array-item v-for="item in dataList" v-bind:item="item" v-bind::key="item.id"></array-item>
-        </ol>
-    </div>
+<head>
+    <script src="vue.js"></script>
+</head>
 
-
-    <script>
+<div id="app-8">
+    <ol>
+        <array-item v-for="item in dataList" v-bind:item="item" v-bind::key="item.id"></array-item>
+    </ol>
+</div>
 
 
+<a id="app-9" href="#" v-on:click="clickHandler2">点击事件</a>
 
 
-    Vue.component('array-item',{
-        props:['item'],
-        template:'<li>{{item.value}}</li>'
+<script>
+    Vue.component('array-item', {
+        props: ['item'],
+        template: '<li>{{item.value}}</li>'
     })
 
-    var app8=new Vue({
-        el:'#app-8',
-        data:{
-            dataList:[
-                {id:0,value:'蔬菜'},{id:1,value:'水果'},{id:2,value:'牛奶'},{id:3,value:'沙拉'}
-            ]
+    Vue.component('alert-message',{
+       template:'xxx'
+    })
+
+    var app8 = new Vue({
+        el: '#app-8',
+        data: {
+            dataList: [{
+                id: 0,
+                value: '蔬菜'
+            }, {
+                id: 1,
+                value: '水果'
+            }, {
+                id: 2,
+                value: '牛奶'
+            }, {
+                id: 3,
+                value: '沙拉'
+            }]
         },
         //生命期钩子函数  create:在实例被创建后调用
-        created:function(){
+        created: function () {
             console.log('array-item invoke')
         }
     })
 
-    </script>
+    var app9 = new Vue({
+        el: '#app-9',
+        methods: {
+            clickHandler1: function () {
+                alert("哈哈哈哈")
+            },
+            clickHandler2:function(){
+                alert("猪猪")
+            }
+        }
+
+    })
+</script>
+
 </html>
