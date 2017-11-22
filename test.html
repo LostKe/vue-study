@@ -48,6 +48,25 @@
 
 <a id="app-9" href="#" v-on:click="clickHandler2">点击事件</a>
 
+<div id="app-10" :style="styleObject">sdfsdfsdfsdfsdf</div>
+
+<div id="dev">
+    <h1 v-if="ok">Yes</h1>
+    <h1 v-else>NO</h1>
+    <template v-if="ok">
+        <h1>Title</h1>
+        <p>Paragraph 1</p>
+        <p>Paragraph 2</p>
+    </template>
+    <template v-else="ok">
+        <h1>hahh</h1>
+        <p>sdf 1</p>
+        <p>dfd 2</p>
+    </template>
+
+    <h1 v-show="ok">Hello!</h1>
+
+</div>
 
 
 <script>
@@ -151,6 +170,26 @@
             clickHandler2:function(){
                 alert("猪猪")
             }
+        }
+    })
+
+
+    var app10=new Vue({
+        el:'#app-10',
+        data:{
+            styleObject:{
+                color: 'red',
+                fontSize: 30
+            }
+           
+        }
+       
+    })
+
+    var dev=new Vue({
+        el:'#dev',
+        data:{
+            ok:false
         }
     })
 </script>
