@@ -1,0 +1,125 @@
+<html>
+    <header>
+        <script src="vue.js"></script>
+    </header>
+
+    <body>
+        <ul id="app-1">
+            <li v-for="(value,key,index) in person">
+               {{index}}--> {{key}}:{{value}}
+            </li>
+        </ul>
+
+        <div id="app-2">
+            <button   v-on:click="addClick">add 1</button>
+            <p>被click了{{count}}次</p>
+
+            <button v-on:click="say('hi')">sayHi</button>
+            <button v-on:click="say('what')">sayWhat</button>
+
+            <a v-on:click.once="dothis" href="#">只能点一次</a>
+
+            <input @keyup.delete.ctrl="confirm">
+
+
+            <br>
+            <input v-model="message" placeholder="edit me">
+            <p>Message is {{message}}</p>
+
+            <span>Multiline message is:</span>
+            <p style="white-space: pre-line;">{{ message }}</p>
+            <br>
+            <textarea v-model="message" placeholder="add multiple lines"></textarea>
+
+
+            <div>
+                    <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+                    <label for="jack">Jack</label>
+                    <input type="checkbox" id="john" value="John" v-model="checkedNames">
+                    <label for="john">John</label>
+                    <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+                    <label for="mike">Mike</label>
+                    <br>
+                    <span>Checked names: {{ checkedNames }}</span>
+            </div>
+
+            <div>
+                    <select v-model="selected">
+                            <option v-for="item in option_items">{{item}}</option>
+                    </select>
+                    <span>Selected: {{ selected }}</span>
+            </div>
+
+
+            <div>
+                    <simple-counter></simple-counter>
+                    <simple-counter></simple-counter>
+                    <simple-counter></simple-counter>
+            </div>
+        </div>
+    </body>
+
+    <script>
+        //组件
+        var data = { counter: 0 }
+
+        Vue.component('simple-counter',{
+            template:"<button v-on:click='addcount(2)'>{{ counter }}</button>",
+            data:function(){
+                return{
+                    counter:0
+                }
+            },
+            methods:{
+                addcount:function(num){
+                    this.counter+=2
+                }
+            }
+        })
+
+
+        var app1=new Vue({
+            el:'#app-1',
+            data:{
+                person:{
+                    name:"Tom",
+                    age:20,
+                    address:"北京"
+                }
+            }
+        });
+
+        var app2=new Vue({
+            el:'#app-2',
+            
+            data:{
+                count:0,
+                message:'',
+                checkedNames:[],
+                selected:'A',
+                option_items:['请选择','A','B','C','D']
+            },
+            methods:{
+                    addClick:function(event){
+                        this.count++
+                        if(event){
+                            alert(event.target.tagName)
+                        }
+                        console.log("current count=%d",this.count);
+                    },
+
+                    say:function(msg){
+                        alert(msg)
+                    },
+                    dothis:function(){
+                        alert('被点击了')
+                    },
+                    confirm:function(){
+                        confirm('确定要删除吗');
+                    }
+
+            }
+            
+        });
+    </script>
+</html>
