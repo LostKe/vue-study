@@ -1,0 +1,41 @@
+<html>
+    <header>
+        <script src="vue.js"></script>
+    </header>
+    <body>
+        <div id="app-1">
+            <input v-model="inputMsg">
+            <br>
+            <child v-bind:msg="inputMsg"  ></child>
+            <br>
+            <child msg="你好中国"></child>
+            <br>
+           
+        </div>
+
+        <script>
+            //一个全局的组建
+            Vue.component('child',{
+                props:['msg'],
+                template:"<span style='color:red'>{{msg}}</span>"
+            })
+
+
+            var app1=new Vue({
+                el:'#app-1',
+                data:{
+                    inputMsg:"",
+                    todo:{
+                        text:'do write message',
+                        iscomplete:true
+                    }
+                },
+                
+
+            })
+
+
+
+        </script>
+    </body>
+</html>
