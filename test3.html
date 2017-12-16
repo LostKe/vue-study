@@ -1,0 +1,50 @@
+<html>
+    <header>
+        <script src="vue.js"></script>
+    </header>
+
+    <body>
+
+            <div id="app-1">
+                    <input type="radio" v-model="picked" value="a">
+                    <span>{{picked}}</span>
+                    <br>
+                    <input type="checkbox" v-model="toggle">
+                    <span>{{toggle}}</span>
+                    <br>
+                    <select v-model="selected">
+                      <option value="abc">ABC</option>
+                      <option value="e">e</option>
+                      <option value="f">f</option>
+                    </select>
+                    <span>{{selected}}</span>
+            </div>
+
+            <div id="app-2">
+                 <input
+                    type="checkbox"
+                    v-model="toggle"
+                    v-bind:true-value="a"
+                    v-bind:false-value="b">
+                    <span>{{toggle}}</span>
+            </div>
+
+        <script>
+            var app1=new Vue({
+                el:'#app-1',
+                data:{
+                    picked:true,
+                    toggle:true,
+                    selected:''
+                }
+            });
+
+            var app2=new Vue({
+                el:'#app-2',
+                data:{
+                    toggle:'请勾选'
+                }
+            })
+        </script>
+    </body>
+</html>

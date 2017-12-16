@@ -4,8 +4,10 @@
     </header>
     <body>
         <div id="app-1">
+            
             <input v-model="inputMsg">
             <br>
+            <!-- 这里将input的数据绑定 -->
             <child v-bind:msg="inputMsg"  ></child>
             <br>
             <child msg="你好中国"></child>
@@ -13,18 +15,18 @@
            
         </div>
 
+
         <script>
-            //一个全局的组建
+            //一个全局的组件
             Vue.component('child',{
                 props:['msg'],
                 template:"<span style='color:red'>{{msg}}</span>"
             })
 
-
             var app1=new Vue({
                 el:'#app-1',
                 data:{
-                    inputMsg:"",
+                    inputMsg:"a",
                     todo:{
                         text:'do write message',
                         iscomplete:true
